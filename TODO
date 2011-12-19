@@ -1,0 +1,16 @@
+1. Make some statistics about the data, e.g. :
+    1.1. comment frequencies in a commit
+    1.2. commit frequencies for a commit-owner
+    1.3. 
+
+
+2. Cluster the bugs
+fast resolves vs. long not resolved
+
+3. Cluster the commits 
+commit that result in more bugs vs. clean commit with not many bugs following them
+
+4. Prediction
+predict the commits that might result in more bugs
+
+5. 
