@@ -8,7 +8,8 @@ for line in f:
         bug = line
     elif (line == '</bug>'):
         bug += line
-        dom = parseString(bug)  
+        #dom = parseString(bug)  
+        xml = bug
         break   
     else:
         bug += line
