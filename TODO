@@ -1,4 +1,17 @@
 1. Make some statistics about the data, e.g. :
+    1.1. Commits amount by continents;
+    1.2. Commits by projects;
+    1.3. Commit frequencies by file;
+    1.4. Commits per author;
+    # Commit frequencies by file path parts;
+    1.5. Bug status frequencies;
+    1.6. Bug fix time;
+    1.7. Bug frequencies by type;
+
+
+==============
+
+1. Make some statistics about the data, e.g. :
     1.1. comment frequencies in a commit
     1.2. commit frequencies for a commit-owner
     1.3. 
