@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS bugs;
 
 CREATE TABLE bugs (
     bug_id INTEGER PRIMARY KEY,
+    title VARCHAR(255),
     status VARCHAR(64),
     owner VARCHAR(128),
     closed_on DATETIME,
@@ -19,7 +20,5 @@ CREATE TABLE comments (
     bug_id INTEGER REFERENCES bugs(bug_id),
     author VARCHAR(128),
     comment_date DATETIME,
-    what TEXT  
+    what TEXT
 );
-
-
