@@ -29,7 +29,10 @@ def parse_parent_hashes(el, obj):
     >>> parse_parent_hashes(ET.XML('<t>one two three</t>'), {})
     {'parent_hashes': ['one', 'two', 'three']}
     """
-    obj['parent_hashes'] = el.text.split(' ')
+    if el.text:
+        obj['parent_hashes'] = el.text.split(' ')
+    else:
+        obj['parent_hashes'] = []
 
     return obj
 
@@ -139,19 +142,24 @@ def write_change(obj, conn, cur):
             )
         )
 
-
     conn.commit()
 
 def main():
-    f = open('./data/test.txt', 'r')
+    f = open('./data/git.log.xml', 'r')
     conn = sqlite3.connect('./data/db.sqlite3')
     cur = conn.cursor()
+    i = 0
 
     while True:
         change = grep_change(f)
+        i += 1
         if change:
-            print parse_change(ET.XML(change), {})
-            write_change(parse_change(ET.XML(change), {}), conn, cur)
+            if i % 10 == 0:
+                print i
+            try:
+                write_change(parse_change(ET.XML(change), {}), conn, cur)
+            except Exception:
+                print change
         else:
             return
 
