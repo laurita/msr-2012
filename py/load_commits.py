@@ -153,13 +153,15 @@ def main():
     while True:
         change = grep_change(f)
         i += 1
+        if i % 10 == 0:
+            print i
         if change:
-            if i % 10 == 0:
-                print i
-            try:
-                write_change(parse_change(ET.XML(change), {}), conn, cur)
-            except Exception:
-                print change
+            if i > 213577:
+                try:
+                    write_change(parse_change(ET.XML(change), {}), conn, cur)
+                except Exception:
+                    #print change
+                    pass
         else:
             return
 
