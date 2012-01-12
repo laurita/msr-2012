@@ -3,3 +3,9 @@ data/*
 *.pyc
 jar/*
 .DS_Store
+ item.
+tex/*.aux
+tex/*.log
+tex/*.pdf
+tex/*.synctex.gz
+tex/*.toc
