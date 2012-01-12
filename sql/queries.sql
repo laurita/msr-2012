@@ -115,7 +115,23 @@ select bugs.bug_id, count(bugs.bug_id)/(julianday(closed_on) - julianday(opened_
     where bugs.bug_id = comments.bug_id and closed_on not null
     group by bugs.bug_id;
 
+-- time zones
+select tz/60 from commits;
 
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------
+
+-- COMMITS' INFO
+
+-- number of commits
+select count(*) from commits;
 
 
 
