@@ -1,3 +1,27 @@
+-- max number of comments in one bug
+select max(counts) 
+from 
+    (select bug_id, count(bug_id) counts
+    from comments
+    group by bug_id);
+-- 25
+
+-- min number of comments in one bug
+select min(counts) 
+from 
+    (select bug_id, count(bug_id) counts
+    from comments
+    group by bug_id);
+-- 1
+
+-- average number of comments in one bug
+select avg(counts) 
+from 
+    (select bug_id, count(bug_id) counts
+    from comments
+    group by bug_id);
+-- 4.5228714524207
+
 -- comment frequencies in a bug
 select counts, count(counts) frequencies
 from
@@ -33,6 +57,15 @@ order by frequencies desc;
 23|26
 24|23
 
+select 0.95*sum(frequencies)
+from
+(select counts, count(counts) frequencies
+from
+(select bug_id, count(bug_id) counts
+from comments
+group by bug_id)
+group by counts);
+
 -- time from opening until closing the bug (in days)
 select bug_id, opened_date, closed_on, julianday(closed_on) - julianday(opened_date)
 from bugs
@@ -59,9 +92,61 @@ limit 20;
 19|2008-01-12 10:26:46|2008-01-12 10:27:26|0.000462962780147791
 20|2008-01-14 22:17:24|2008-01-14 22:19:03|0.00114583317190409
 
+-- just the bug_id's and times
+select julianday(closed_on) - julianday(opened_date)
+from bugs 
+where closed_on not null;
+
 -- average time required to solve the bug (in days). If the bug is not yet closed, the case is not counted, because avg counts only non-NULL cases.
 select avg(julianday(closed_on)-julianday(opened_date))
 from bugs;
 72.4401653204619
+
+-- resolving time vs. comments
+
+select bugs.bug_id, count(bugs.bug_id) counts, julianday(closed_on) - julianday(opened_date) time
+    from comments, bugs
+    where bugs.bug_id = comments.bug_id and closed_on not null
+    group by bugs.bug_id;
+
+-- comment density vs. resolving time
+select bugs.bug_id, count(bugs.bug_id)/(julianday(closed_on) - julianday(opened_date)) density, julianday(closed_on) - julianday(opened_date) time
+    from comments, bugs
+    where bugs.bug_id = comments.bug_id and closed_on not null
+    group by bugs.bug_id;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

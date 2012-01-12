@@ -22,12 +22,6 @@
 \author{Laura Bledaite \& Martynas Pumputis}
 \maketitle
 %-----------------------------------------------------------
-\begin{abstract}\centering
-A couple of sentences on three or four lines to summarise your work.\\ 
-This is a \LaTeX\ template for undergraduate project reports.\\
-Its detailed contents evolve to reflect FAQs.
-\end{abstract}
-%-----------------------------------------------------------
 \tableofcontents
 %-----------------------------------------------------------
 \chapter{Introduction}
@@ -51,6 +45,8 @@ Secondly, we were interested in how long it takes to solve a bug. In order to fi
 \label{fig:res_times}
 \end{figure}
  
+Moving more in detail, we made an assumption that maybe the resolving time and the number of comments are related, i.e. maybe there exists a tendency that more comments mean faster resolving of a bug. Figure~\ref{fig:com_time} shows the relationship between the number of comments in a bug and the time required to resolve a bug. A line in Figure~\ref{fig:com_time} shows an attempt to adjust the linear regression model for the data using the number of comments as a predictor variable.
+
 \begin{figure}[ht!]
 \centering
 \includegraphics[width=.7\textwidth]{comments_time.png}
@@ -58,7 +54,7 @@ Secondly, we were interested in how long it takes to solve a bug. In order to fi
 \label{fig:com_time}
 \end{figure}
 
-Moving more in detail, we made an assumption that maybe the resolving time and the number of comments are related, i.e. maybe there exists a tendency that more comments mean faster resolving of a bug. Figure~\ref{fig:com_time} shows the relationship between the number of comments in a bug and the time required to resolve a bug. A line in Figure~\ref{fig:com_time} shows an attempt to adjust the linear regression model for the data using the number of comments as a predictor variable. The predicted model looks like this:
+The predicted model looks like this:
 \[
 ResolvingTime=30.0465 + 10.1493 \cdot NumberOfComments.\]
 The results of the general linear model are shown in Table~\ref{tbl:glm}.
@@ -80,7 +76,7 @@ NumberOfComments & 10.1493 & 0.3108 & 32.66 & {$<2e-16$}***\tabularnewline
 \label{tbl:glm}
 \end{table}
 
-Inspite of the fact, that the results of the general linear model prove the coefficient of the number of comments not be be equal 0, the data do not seem to be very well explained by the model adjusted. This might have happened because it may happen naturally, that the longer the bug is being solved, the more comments it gets, but it does not give any more information. Contrarily, we expect that the more comments a bug gets, the faster it is resolved. To address this issue, we decided to take a look at the comments' density in a time period and its relationship to the resolving time. And actually results show that there exist such a relationship. Figure~\ref{fig:density_time} does not suggest the fitting model for the data, but it shows several data properties. Firstly, it is easy to notice that whenever a bug is very dense in comments, it will most likely be resolved very fast. On the other hand, it does not mean that a bug which is sparse in comments cannot be resolved fast. Bugs having few comments have similar probability to be solved fast or slow.
+Inspite of the fact, that the results of the general linear model prove the coefficient of the number of comments not be be equal 0, the data do not seem to be very well explained by the model adjusted. This might have happened because it may happen naturally, that the longer the bug is being solved, the more comments it gets, but it does not give any more information. Contrarily, we expect that the more comments a bug gets, the faster it is resolved. To address this issue, we decided to take a look at the comments' density in a time period and its relationship to the resolving time. 
 
 \begin{figure}[ht!]
 \centering
@@ -89,6 +85,23 @@ Inspite of the fact, that the results of the general linear model prove the coef
 \label{fig:density_time}
 \end{figure}
 
+And actually results show that there exist such a relationship. Figure~\ref{fig:density_time} does not suggest the fitting model for the data, but it shows several data properties. Firstly, it is easy to notice that whenever a bug is very dense in comments, it will most likely be resolved very fast. On the other hand, it does not mean that a bug which is sparse in comments cannot be resolved fast. Bugs having few comments have similar probability to be solved fast or slow.
+
+One more thing we analysed, was the origin of the programmers. We divided them according to the timezones they were working in and got quite interesting results. Figure~\ref{fig:time_zones} shows the distribution of the time zones the Android programmers were working in. From the results we can see that the programmers from the West coast of the USA(time zones -8 and -7) are most active. The second most active cluster of coders are from Europe(time zones 0, 1 and 2). The third most active group comes from the East side of USA and/or South America plus Greenland :) (time zones -5, -4 and -3). And the last group of active programmers is located in East Asia and/or Australia (time zones 8, 9 and 10). The relation between the programmers activity and the time zones can be seen from Figure~\ref{fig:time_zones} and Figure~\ref{fig:tz_map}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=.7\textwidth]{time_zones.png}
+\caption{Histogram of the time zones of the coders.}
+\label{fig:time_zones}
+\end{figure}
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=1.2\textwidth]{World-Time-Zone.jpg}
+\caption{World Time Zones.}
+\label{fig:tz_map}
+\end{figure}
 
 %-----------------------------------------------------------
 \addcontentsline{toc}{chapter}{\numberline{}Bibliography}
@@ -131,7 +144,7 @@ www.dur.ac.uk/its/software/application/\dots
 \bibitem[WSH]{WSH} \textsl{WinShell}, \texttt{www.winshell.de}
 \end{thebibliography}
 \vfill
-\begin{flushright}\small Prepared in \LaTeXe\ by RCJ\end{flushright}
+\begin{flushright}\small Prepared in \LaTeXe\ \end{flushright}
 
 %-----------------------------------------------------------
 \appendix
