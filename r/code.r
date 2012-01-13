@@ -1,3 +1,5 @@
+library("DBI")
+library("RSQLite")
 # connect to SQLite DB
 drv <- dbDriver("SQLite")
 tfile <- tempfile()
@@ -69,15 +71,26 @@ summary(glm.linear)
 # line fitting glm
 lines(density_time[,1], 73.028560+-0.004710*density_time[,1])
 
+# time zone analysis
+tzones <- dbGetQuery(con, "select tz/60 from commits;")
+tzones <- data.matrix(tzones)
+hist(tzones, xlab="Time zones", main="");
 
 
 
+# bug weights
+bug_files <- dbGetQuery(con, "select * from bug_files;")
+bug_files <- data.matrix(bug_files)
+# quantiles
+quantile(bug_files[,2], probs = seq(0,1,0.05))
+hist(bug_files[,2], breaks=200, xlab="File path bug weights", main="")
 
-
-
-
-
-
+# commit weights
+con <- dbConnect(drv, dbname = '/Users/laura/Sandbox/msr-2012/data/commit_weight.db')
+commit_weight <- dbGetQuery(con, "select * from commit_weight;")
+commit_weight <- data.matrix(commit_weight)
+hist(commit_weight, breaks = 200, main="", xlab="Commit weight")
+quantile(commit_weight, probs=seq(0,1,0.05))
 
 
 
