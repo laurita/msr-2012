@@ -131,7 +131,7 @@ histogram depicted in Figure~\ref{fig:bug_files}
 \label{fig:bug_files}
 \end{figure}
 
-Then we calculated a 95\%quantile and using it decided to consider a path buggy if its weight exceeds this value. 
+Then we calculated a 95 \%quantile and using it decided to consider a path buggy if its weight exceeds this value. 
 
 \[95\%quantile(PathWeights) = 2.509803922\]
 
@@ -176,7 +176,7 @@ list). Figure~\ref{fig:commit_weights} shows the histogram of the commit weights
 \label{fig:commit_weights}
 \end{figure}
 
-Again we calculated a 95\%quantile of the commit weights
+Again we calculated a 95 \%quantile of the commit weights
 \[95\%quantile(CommitWeights) = 51.10859\] and found that 8870 commits (out of 383296 with a set bug id) exceed the quantile and  hence might be buggy.
 
 Using this data, it is possible to find the authors, that might have introduced the bugs (assuming their commits had the highest weights). Table~\ref{tbl:bad_authors} lists the authors of the commits with the highest commit weight.
